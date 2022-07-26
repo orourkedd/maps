@@ -155,8 +155,8 @@ class MethodChannelMapboxGl extends MapboxGlPlatform {
             );
           },
           onCreatePlatformView: (PlatformViewCreationParams params) {
-            final SurfaceAndroidViewController controller =
-                PlatformViewsService.initSurfaceAndroidView(
+            final ExpensiveAndroidViewController controller =
+                PlatformViewsService.initExpensiveAndroidView(
               id: params.id,
               viewType: 'plugins.flutter.io/mapbox_gl',
               layoutDirection: TextDirection.ltr,
