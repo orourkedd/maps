@@ -141,7 +141,6 @@ class MethodChannelMapboxGl extends MapboxGlPlatform {
       OnPlatformViewCreatedCallback onPlatformViewCreated,
       Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers) {
     if (defaultTargetPlatform == TargetPlatform.android) {
-      if (useHybridComposition) {
         return PlatformViewLink(
           viewType: 'plugins.flutter.io/mapbox_gl',
           surfaceFactory: (
@@ -176,15 +175,6 @@ class MethodChannelMapboxGl extends MapboxGlPlatform {
             return controller;
           },
         );
-      } else {
-        return AndroidView(
-          viewType: 'plugins.flutter.io/mapbox_gl',
-          onPlatformViewCreated: onPlatformViewCreated,
-          gestureRecognizers: gestureRecognizers,
-          creationParams: creationParams,
-          creationParamsCodec: const StandardMessageCodec(),
-        );
-      }
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       return UiKitView(
         viewType: 'plugins.flutter.io/mapbox_gl',
