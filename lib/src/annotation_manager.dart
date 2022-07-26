@@ -253,11 +253,13 @@ class SymbolManager extends AnnotationManager<Symbol> {
     bool textAllowOverlap = false,
     bool iconIgnorePlacement = false,
     bool textIgnorePlacement = false,
+    bool textOptional = false,
     bool enableInteraction = true,
   })  : _iconAllowOverlap = iconAllowOverlap,
         _textAllowOverlap = textAllowOverlap,
         _iconIgnorePlacement = iconIgnorePlacement,
         _textIgnorePlacement = textIgnorePlacement,
+        _textOptional = textOptional,
         super(
           controller,
           enableInteraction: enableInteraction,
@@ -268,6 +270,7 @@ class SymbolManager extends AnnotationManager<Symbol> {
   bool _textAllowOverlap;
   bool _iconIgnorePlacement;
   bool _textIgnorePlacement;
+  bool _textOptional;
 
   /// For more information on what this does, see https://docs.mapbox.com/help/troubleshooting/optimize-map-label-placement/#label-collision
   Future<void> setIconAllowOverlap(bool value) async {
@@ -290,6 +293,11 @@ class SymbolManager extends AnnotationManager<Symbol> {
   /// For more information on what this does, see https://docs.mapbox.com/help/troubleshooting/optimize-map-label-placement/#label-collision
   Future<void> setTextIgnorePlacement(bool value) async {
     _textIgnorePlacement = value;
+    await _rebuildLayers();
+  }
+
+  Future<void> setTextOptional(bool value) async {
+    _textOptional = value;
     await _rebuildLayers();
   }
 
@@ -338,6 +346,7 @@ class SymbolManager extends AnnotationManager<Symbol> {
           iconIgnorePlacement: _iconIgnorePlacement,
           textAllowOverlap: _textAllowOverlap,
           textIgnorePlacement: _textIgnorePlacement,
+          textOptional: _textOptional,
         )
       ];
 }

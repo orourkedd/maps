@@ -1081,6 +1081,10 @@ class MapboxMapController extends ChangeNotifier {
     await symbolManager?.setTextIgnorePlacement(enable);
   }
 
+  Future<void> setSymbolTextOptional(bool enable) async {
+    await symbolManager?.setTextOptional(enable);
+  }
+
   /// Adds an image source to the style currently displayed in the map, so that it can later be referred to by the provided id.
   Future<void> addImageSource(
       String imageSourceId, Uint8List bytes, LatLngQuad coordinates) {
